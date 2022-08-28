@@ -4,6 +4,23 @@
   <groupId>org.example</groupId>
   <artifactId>BeBra44_bot</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <properties>
+    <maven.compiler.source>18</maven.compiler.source>
+    <maven.compiler.target>18</maven.compiler.target>
+  </properties>
   <name>Archetype - BeBra44_bot</name>
   <url>http://maven.apache.org</url>
 </project>
+<dependencies>
+  <dependency>
+    <groupId>org.telegram</groupId>
+    <artifactId>telegrambots</artifactId>
+    <version>6.1.0</version>
+  </dependency>
+  <dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.24</version>
+    <scope>provided</scope>
+  </dependency>
+</dependencies>
