@@ -1,5 +1,6 @@
 package base;
 
+import lombok.SneakyThrows;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -24,37 +25,43 @@ public class BeBra44_bot extends TelegramLongPollingBot {
 
 
     @Override
+    @SneakyThrows
     public void onUpdateReceived(Update update) {
-        if (update.hasMessage() && update.getMessage().hasText()) {
-            SendMessage message = new SendMessage();
+        if(update.hasMessage()){
+            handleMessage(update.getMessage());
+        }
+    }
+    @SneakyThrows
+    public void handleMessage(Message message){
+        if (message.hasText() && message.hasEntities()) {
             Optional<MessageEntity> commandEntity = message.getEntities().stream().filter(e -> "bot_command".equals(e.getType())).findFirst();
             if (commandEntity.isPresent()) {
                 String command = message.getText().substring(commandEntity.get().getOffset(), commandEntity.get().getLength());
 
-
-                String ID = update.getMessage().getChatId().toString();
-                String Username = update.getMessage().getFrom().getFirstName().toString();
-                message.setChatId(ID);
+                String ID = message.getChatId().toString();
+                String Username = message.getFrom().getFirstName().toString();
+                SendMessage sendMsg = new SendMessage();
+                sendMsg.setChatId(ID);
 
                 switch (command) {
                     case "/start":
-                        message.setText("Добрый день " + Username + " !\n");
+                        sendMsg.setText("Добрый день " + Username + " !\n");
                         try {
-                            execute(message);
+                            execute(sendMsg);
                         } catch (TelegramApiException e) {
                             e.printStackTrace();
                         }
-                        message.setText("Это BeBra4_bot. Создан по приколу... Однако с помощью бота можно быстро узнавать информацию по курсу валют и ее конвертации.\n\n Если желаешь узнать список команд пропиши /help");
+                        sendMsg.setText("Это BeBra4_bot. Создан по приколу... Однако с помощью бота можно быстро узнавать информацию по курсу валют и ее конвертации.\n\n Если желаешь узнать список команд пропиши /help");
                         try {
-                            execute(message);
+                            execute(sendMsg);
                         } catch (TelegramApiException e) {
                             e.printStackTrace();
                         }
                         break;
                     case "/help":
-                        message.setText("Список доступных команд:\n\n  /currency <1 вал> <2 вал>    - Курс валюты 1 относительно валюты 2\n  /convert <1 вал> <2 вал> <Сумма в 1 валюте>    - Сумма 1 валюты по курсу 2й\n");
+                        sendMsg.setText("Список доступных команд:\n\n  /currency <1 вал> <2 вал>    - Курс валюты 1 относительно валюты 2\n  /convert <1 вал> <2 вал> <Сумма в 1 валюте>    - Сумма 1 валюты по курсу 2й\n");
                         try {
-                            execute(message);
+                            execute(sendMsg);
                         } catch (TelegramApiException e) {
                             e.printStackTrace();
                         }
