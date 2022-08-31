@@ -44,7 +44,7 @@ public class BeBra44_bot extends TelegramLongPollingBot {
                 String Username = message.getFrom().getFirstName().toString();
                 SendMessage sendMsg = new SendMessage();
                 sendMsg.setChatId(ID);
-
+                System.out.println(message.getText().length());
 
                 switch (command) {
                     case "/start":
@@ -60,6 +60,11 @@ public class BeBra44_bot extends TelegramLongPollingBot {
                         break;
 
                     case "/currency":
+                        if (message.getText().length()==9){
+                            sendMsg.setText("Введите параметр условной единицы(/guide)");
+                            execute(sendMsg);
+                            break;
+                        }
                         String report = new Currencies().get_currency(value[1]);
 
                         System.out.println(report);

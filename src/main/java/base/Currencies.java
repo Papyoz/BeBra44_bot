@@ -3,7 +3,6 @@ package base;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import java.io.IOException;
 import java.util.Date;
 
 public class Currencies{
@@ -16,16 +15,12 @@ public class Currencies{
         Date date = new Date();
 
         switch (currency) {
-            case "EUR":
-                id = 7;
-                break;
-
             case "USD":
                 id = 3;
                 break;
 
-            case "AMD":
-                id = 20;
+            case "EUR":
+                id = 8;
                 break;
 
             case "AUD":
@@ -36,144 +31,137 @@ public class Currencies{
                 id = 18;
                 break;
 
-            case "BGN":
-                id = 28;
-                break;
-
-            case "BRL":
-                id = 31;
-                break;
-
-            case "BYN":
+            case "AMD":
                 id = 23;
                 break;
 
-            case "CAD":
-                id = 58;
+            case "BYN":
+                id = 28;
                 break;
 
-            case "CHF":
-                id = 128;
+            case "BGN":
+                id = 33;
                 break;
 
-            case "CNY":
-                id = 68;
-                break;
-
-            case "CZK":
-                id = 118;
-                break;
-
-            case "DKK":
-                id = 47;
-                break;
-
-            case "GBP":
-                id = 115;
+            case "BRL":
+                id = 38;
                 break;
 
             case "HUF":
-                id = 35;
-                break;
-
-            case "INR":
-                id = 51;
-                break;
-
-            case "JPY":
-                id = 135;
-                break;
-
-            case "KGS":
-                id = 63;
+                id = 43;
                 break;
 
             case "KRW":
-                id = 39;
-                break;
-
-            case "KZT":
-                id = 55;
-                break;
-
-            case "MDL":
-                id = 71;
-                break;
-
-            case "NOK":
-                id = 83;
-                break;
-
-            case "PLN":
-                id = 87;
-                break;
-
-            case "RON":
-                id = 75;
-                break;
-
-            case "SEK":
-                id = 123;
-                break;
-
-            case "SGD":
-                id = 95;
-                break;
-
-            case "TJS":
-                id = 99;
-                break;
-
-            case "TMT":
-                id = 79;
-                break;
-
-            case "TRY":
-                id = 103;
-                break;
-
-            case "UAH":
-                id = 111;
-                break;
-
-            case "UZS":
-                id = 107;
-                break;
-
-            case "XDR":
-                id = 91;
-                break;
-
-            case "ZAR":
-                id = 131;
+                id = 48;
                 break;
 
             case "HKD":
-                id = 43;
+                id = 53;
                 break;
+
+            case "DKK":
+                id = 58;
+                break;
+
+            case "INR":
+                id = 63;
+                break;
+
+            case "KZT":
+                id = 68;
+                break;
+
+            case "CAD":
+                id = 73;
+                break;
+
+            case "KGS":
+                id = 78;
+                break;
+
+            case "CNY":
+                id = 83;
+                break;
+
+            case "MDL":
+                id = 88;
+                break;
+
+            case "RON":
+                id = 93;
+                break;
+
+            case "TMT":
+                id = 98;
+                break;
+
+            case "NOK":
+                id = 103;
+                break;
+
+            case "PLN":
+                id = 108;
+                break;
+
+            case "XDR":
+                id = 113;
+                break;
+
+            case "SGD":
+                id = 118;
+                break;
+
+            case "TJS":
+                id = 123;
+                break;
+
+            case "TRY":
+                id = 128;
+                break;
+
+            case "UZS":
+                id = 133;
+                break;
+
+            case "UAH":
+                id = 138;
+                break;
+
+            case "GBP":
+                id = 143;
+                break;
+
+            case "CZK":
+                id = 148;
+                break;
+
+            case "SEK":
+                id = 153;
+                break;
+
+            case "CHF":
+                id = 158;
+                break;
+
+            case "ZAR":
+                id = 163;
+                break;
+
+            case "JPY":
+                id = 168;
+                break;
+
 
             default:
                 return "Введите коректный тэг валюты(/guide)";
         }
-        if (currency == "") {
-            String null_res = "Курс валют на " + date + ": \n";
-            for (int i = 3; i < 135; i += 4) {
-                id = i;
 
-                value = val(id, doc);
-
-                null_res += currency + ":   " + value + "\n";
-            }
-            System.out.println(null_res);
-            return null_res;
-        } else {
             value = val(id, doc);
             delta = del(id, doc);
 
 
             String result = "Курс " + currency + " к RUB на " + date + " = " + value + "\nДинамика курса: " + delta;
             return result;
-        }
     }
     private String val(int id, Document doc) {
         String value = doc.select("td").get(id).text();
