@@ -7,7 +7,6 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.MessageEntity;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.Optional;
 
@@ -71,12 +70,9 @@ public class BeBra44_bot extends TelegramLongPollingBot {
                         sendMsg.setText(report);
                         execute(sendMsg);
                         break;
-
-                    case "/convert":
-
-                        break;
                     case "/guide":
-                        sendMsg.setText(" USD Доллар США\n" +
+                        sendMsg.setText(
+                                " USD Доллар США\n" +
                                 " EUR Евро\n" +
                                 " AUD Австралийский доллар\n" +
                                 " AZN Азербайджанский манат\n" +
