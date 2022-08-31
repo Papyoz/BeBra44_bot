@@ -54,7 +54,7 @@ public class BeBra44_bot extends TelegramLongPollingBot {
                         break;
 
                     case "/help":
-                        sendMsg.setText("Список доступных команд:\n\n  /currency <1 вал> <2 вал>    - Курс валюты 1 относительно валюты 2\n  /convert <1 вал> <2 вал> <Сумма в 1 валюте>    - Сумма 1 валюты по курсу 2й\n");
+                        sendMsg.setText("Список доступных команд:\n\n  /currency <Tag>  - Курс валюты 1 относительно валюты 2\n  /guide  - Подсказка к тэгам\n");
                         execute(sendMsg);
                         break;
 
