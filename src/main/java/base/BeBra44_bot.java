@@ -71,7 +71,7 @@ public class BeBra44_bot extends TelegramLongPollingBot {
 
                         break;
                     case "/guide":
-                        sendMsg.setText();
+                        sendMsg.setText("");
                         execute(sendMsg);
                         break;
                 }
